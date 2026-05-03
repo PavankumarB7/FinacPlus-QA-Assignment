@@ -22,7 +22,9 @@ export class LoginPage {
     await this.usernameInput.fill(username);
     await this.passwordInput.fill(password);
     await this.loginButton.click();
-    await this.page.waitForURL(/\/profile/);
+    await this.page
+      .locator("#userName-value")
+      .waitFor({ state: "visible", timeout: 60000 });
   }
 
   async validateLoggedIn(username) {
